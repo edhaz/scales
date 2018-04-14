@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}Scales|Home{% endblock %}
+
+{% block body %}
+<div class="container-fluid text-center topEd bg-white">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-2 col-push-1">
+                <img class="" src="/static/scales.png" alt="Scales logo" style="max-width: 100%">
+            </div>
+            <div class="col-md-3 col-push-2">
+                <h1>Scales</h1>
+                <p>A new web application to help you keep track of and improve your scales practice (initially for the violin using ABRSM scales).</p>
+                <h3>Grade 4 - Violin</h3>
+                <h1>
+                    {{ scale }}
+                </h1>
+                <input class="btn btn-primary" type="button" value="Refresh Scale" onClick="window.location.reload()">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
