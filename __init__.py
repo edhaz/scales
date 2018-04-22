@@ -29,26 +29,36 @@ def index():
 @app.route("/redirecter", methods=['POST'])
 def redirecter():
     """Get list of scales"""
+    
+    session['instrument'] = request.form.get('instrument')
+    session['grade'] = request.form.get('grade')
 
-        #if not request.form.get("instrument"):
-        #    return redirect("/")
-        #elif not request.form.get("grade"):
-        #    return redirect("/")
-    session['scales'] = ['Ab major', 'B major', 'C major', 'E major', 'G minor', 'B minor', 'C minor']
+    if not session['instrument']:
+        return redirect('/')
+    elif not session['grade']:
+        return redirect('/')
+
+    if session['instrument'] == 'violin':
+        if session['grade'] == '4':
+            session['scales'] = ['Ab major', 'B major', 'C major', 'E major', 'G minor', 'B minor', 'C minor']
+        elif session['grade'] == '5':
+            session['scales'] = ['Db major', 'Eb major', 'F major', 'B minor', 'C# minor', 'E minor']
+
     return redirect(url_for('scales'))
 
 @app.route("/scales", methods=['GET', 'POST'])
 def scales():
     """ Shows the scales to practice """
-
+    instrument = session['instrument'].capitalize()
+    grade = session['grade']
     try:
         session['scales_tmp'] = session['scales']
         scale = random.choice(session['scales_tmp'])
         session['scales_tmp'].remove(scale)
+        return render_template('scales.html', scale=scale, instrument=instrument, grade=grade)
     except IndexError:
-        return render_template('finished.html')
+        return render_template('finished.html', instrument=instrument, grade=grade)
 
-    return render_template('scales.html', scale=scale)
 
 app.secret_key = 'test'
 app.run(debug=True)

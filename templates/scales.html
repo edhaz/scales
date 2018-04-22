@@ -4,11 +4,17 @@
 
 {% block body %}
 <div class="container-fluid text-center bg-white">
-    <!--<p>{{ instrument }}</p>-->
-    <!--<p>{{ grade }}</p>-->
-    <p>{{ scale }}</p>
+    <h3><u>Grade {{ grade }} - {{ instrument }}</u></h3>
+    <br>
+    <div class="container-fluid">
+        <h5>{{ scale }}</h5>
+    </div>
     <form action="/scales" method="post">
         <button class="btn btn-primary" type="submit">Refresh Scale</button>
+    </form>
+    <br>
+    <form action='/' method="post">
+        <button class="btn btn-danger" type="submit">Home</button>
     </form>
 </div>
 {% endblock %}

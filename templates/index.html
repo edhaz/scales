@@ -4,23 +4,30 @@
 
 {% block body %}
 <div class="container-fluid text-center bg-white">
-    <img class="" src="/static/scales.png" alt="Scales logo" style="max-width: 100%">
-    <h1>Scales</h1>
+    <img class="" src="/static/scales.png" alt="Scales logo" style="max-width: 10%">
+    <h2>Scales</h2>
     <form action="/redirecter" method="post">
-        <h5>Select your instrument:</h5>
-        <select name="instrument">
-            <option disable selected value="">Select Instrument</option>
-            <option value="violin">Violin</option>
-        </select>
-        <h5>Select your grade:</h5>
-        <select name="grade">
-            <option disable selected value="">Select Grade</option>
-            {% for grade in grades %}
-                <option value="{{ grade }}">Grade {{ grade }}</option>
-            {% endfor %}
-        </select>
+        <div class="container-fluid">
+            <h5>Select your instrument:</h5>
+            <select name="instrument">
+                <option disable selected value="">Select Instrument</option>
+                <option value="violin">Violin</option>
+            </select>
+        </div>
         <br>
-        <button class="btn btn-primary" type="submit">Submit</button>   
+        <div class="container-fluid">
+        <h5>Select your grade:</h5>
+            <select name="grade">
+                <option disable selected value="">Select Grade</option>
+                {% for grade in grades %}
+                    <option value="{{ grade }}">Grade {{ grade }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <br>
+        <div class="container-fluid">
+            <button class="btn btn-primary" type="submit">Submit</button>   
+        </div>
     </form>
 </div>
 {% endblock %}
