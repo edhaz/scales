@@ -5,15 +5,16 @@
 {% block body %}
 <div class="container-fluid text-center bg-white">
     <h3><u>Grade {{ grade }} - {{ instrument }}</u></h3>
+    <p>Make sure you practice each scale at least 5 times in a row without a mistake!<br>Then click 'Next Scale'.</p>
     <br>
     <div class="container-fluid">
         <h5>{{ scale }}</h5>
     </div>
     <form action="/scales" method="post">
-        <button class="btn btn-primary" type="submit">Refresh Scale</button>
+        <button class="btn btn-primary" type="submit">Next Scale</button>
     </form>
     <br>
-    <form action='/' method="post">
+    <form action='/' method="get">
         <button class="btn btn-danger" type="submit">Home</button>
     </form>
 </div>

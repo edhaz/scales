@@ -1,9 +1,7 @@
 import sqlite3
 import random
-from functools import wraps
-from flask import Flask, flash, redirect, render_template, request, session, g, url_for, jsonify, escape
+from flask import Flask, redirect, render_template, request, session, g, url_for
 from flask_session import Session
-from tempfile import mkdtemp
 
 app = Flask(__name__)
 
@@ -17,12 +15,11 @@ app = Flask(__name__)
 
 scales = []
 
-
-@app.route("/", methods=['GET', 'POST'])
+@app.route("/")
 def index():
     """Scales web app"""
     
-    grades = ['1','2','3','4','5','6','7','8']
+    grades = ['4','5']
 
     return render_template("index.html", grades=grades)
 
