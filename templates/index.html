@@ -4,36 +4,46 @@
 
 {% block body %}
 <div class="container-fluid text-center bg-white">
-    <img class="" src="/static/scales.png" alt="Scales logo" style="max-width: 10%">
-    <h2>Scales</h2>
-    <p>An app to help you when practicing scales.</p>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">Select your Instrument and the Grade you are working on.</li>
-        <li class="list-group-item">You will be shown a random list of the scales required one at a time.</li>
-        <li class="list-group-item">Then all you do is hit 'Next Scale' once you have practiced the one being shown.</li>
-    </ul>
-    <form action="/redirecter" method="post">
-        <div class="container-fluid">
-            <h5>Select your instrument:</h5>
-            <select name="instrument">
-                <option disable selected value="">Select Instrument</option>
-                <option value="violin">Violin</option>
-            </select>
+    <div class="row">
+        <div class="col-sm">
+            <img class="" src="/static/scales.png" alt="Scales logo" style="max-width: 100px">
+            <h2>Scales</h2>
         </div>
-        <br>
-        <div class="container-fluid">
-        <h5>Select your grade:</h5>
-            <select name="grade">
-                <option disable selected value="">Select Grade</option>
-                {% for grade in grades %}
-                    <option value="{{ grade }}">Grade {{ grade }}</option>
-                {% endfor %}
-            </select>
+        <div class="col-sm-4">
+            <div class="container-fluid" style="max-width: 350px">
+                <p>An app to help you when practicing scales.</p>
+                <ul class="list-group">
+                    <li class="list-group-item">Select your Instrument and the Grade you are working on.</li>
+                    <li class="list-group-item">You will be shown a random list of the scales required one at a time.</li>
+                    <li class="list-group-item">Then all you do is hit 'Next Scale' once you have practiced the one being shown.</li>
+                </ul>
+            </div>
         </div>
-        <br>
-        <div class="container-fluid">
-            <button class="btn btn-primary" type="submit">Submit</button>   
+        <div class="col-sm">
+            <form action="/redirecter" method="post">
+                <div class="container-fluid">
+                    <h5>Select your instrument:</h5>
+                    <select name="instrument">
+                        <option disable selected value="">Select Instrument</option>
+                        <option value="violin">Violin</option>
+                    </select>
+                </div>
+                <br>
+                <div class="container-fluid">
+                <h5>Select your grade:</h5>
+                    <select name="grade">
+                        <option disable selected value="">Select Grade</option>
+                        {% for grade in grades %}
+                            <option value="{{ grade }}">Grade {{ grade }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <br>
+                <div class="container-fluid">
+                    <button class="btn btn-primary" type="submit">Submit</button>   
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 </div>
 {% endblock %}

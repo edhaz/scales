@@ -1,6 +1,6 @@
 import sqlite3
 import random
-from flask import Flask, redirect, render_template, request, session, g, url_for
+from flask import Flask, redirect, render_template, request, session, g, url_for, jsonify
 from flask_session import Session
 
 app = Flask(__name__)
@@ -37,7 +37,7 @@ def redirecter():
 
     if session['instrument'] == 'violin':
         if session['grade'] == '4':
-            session['scales'] = ['Ab major', 'B major', 'C major', 'E major', 'G minor', 'B minor', 'C minor']
+            session['scales'] = ['Ab major, 2 octaves', 'B major, 2 octaves', 'C major, 2 octaves', 'E major, 2 octaves', 'G minor, 2 octaves', 'B minor, 2 octaves', 'C minor, 2 octaves']
         elif session['grade'] == '5':
             session['scales'] = ['Db major', 'Eb major', 'F major', 'B minor', 'C# minor', 'E minor']
 
