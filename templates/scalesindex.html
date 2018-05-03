@@ -4,8 +4,8 @@
 
 {% block body %}
 <div class="container-fluid text-center bg-white">
-    <div class="row">
-        <div class="col-sm">
+    <div class="row justify-content-center">
+        <div class="col-sm-2">
             <img class="" src="/static/scales.png" alt="Scales logo" style="max-width: 100px">
             <h2>Scales</h2>
         </div>
@@ -19,13 +19,14 @@
                 </ul>
             </div>
         </div>
-        <div class="col-sm">
+        <div class="col-sm-2">
             <form action="/redirecter" method="post">
                 <div class="container-fluid">
                     <h5>Select your instrument:</h5>
                     <select name="instrument">
                         <option disable selected value="">Select Instrument</option>
                         <option value="violin">Violin</option>
+                        <option value="piano">Piano</option>
                     </select>
                 </div>
                 <br>

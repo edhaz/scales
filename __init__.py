@@ -21,7 +21,7 @@ def index():
     
     grades = ['4','5']
 
-    return render_template("index.html", grades=grades)
+    return render_template("scalesindex.html", grades=grades)
 
 @app.route("/redirecter", methods=['POST'])
 def redirecter():
@@ -40,6 +40,11 @@ def redirecter():
             session['scales'] = ['Ab major, 2 octaves', 'B major, 2 octaves', 'C major, 2 octaves', 'E major, 2 octaves', 'G minor, 2 octaves', 'B minor, 2 octaves', 'C minor, 2 octaves']
         elif session['grade'] == '5':
             session['scales'] = ['Db major', 'Eb major', 'F major', 'B minor', 'C# minor', 'E minor']
+    elif session['instrument'] == 'piano':
+        if session['grade'] == '4':
+            session['scales'] = ['test1', 'test2']
+        elif session['grade'] == '5':
+            session['scales'] = ['test1', 'test2']
 
     return redirect(url_for('scales'))
 
