@@ -68,9 +68,9 @@ def scales():
     instrument = session['instrument'].capitalize()
     grade = session['grade']
     try:
-        #session['scales_tmp'] = session['scales']
-        scale = random.choice(session['scales'])
-        session['scales'].remove(scale)
+        session['scales_tmp'] = session['scales']
+        scale = random.choice(session['scales_tmp'])
+        session['scales_tmp'].remove(scale)
         return render_template('scales.html', scale=scale, instrument=instrument, grade=grade)
     except IndexError:
         return render_template('finished.html', instrument=instrument, grade=grade)

@@ -7,8 +7,9 @@
     <h3><u>Grade {{ grade }} - {{ instrument }}</u></h3>
     <p>Make sure you practice each scale at least 5 times in a row without a mistake!<br>Then click 'Next Scale'.</p>
     <br>
-    <div class="container-fluid" style="max-width: 400px">
-        <h3>{{ scale }}</h3>
+    <div class="container-fluid" style="max-width: 600px">
+        <h3>{{ scale[:-9] }}</h3>
+        <h3>{{ scale[-9:] }}</h3>
     </div>
     <br>
     <form action="/scales" method="post">
