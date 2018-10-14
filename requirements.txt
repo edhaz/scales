@@ -1,6 +1,0 @@
-Flask==0.12.2
-html5lib==0.999
-IMAPClient==1.0.2
-Jinja2==2.10
-requests==2.9.1
-sqlparse==0.2.4
