@@ -62,7 +62,7 @@ def redirecter():
     return redirect(url_for('scales'))
 
 
-@app.route("/scales", methods=['GET', 'POST'])
+@app.route("/", methods=['GET', 'POST'])
 def scales():
     """ Shows the scales to practice """
     instrument = session['instrument'].capitalize()
