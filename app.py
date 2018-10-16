@@ -36,13 +36,14 @@ with app.app_context():
 scales = []
 
 
-@app.route("/")
-def index():
+"""-------Scales-------"""
+
+
+@app.route("/", methods=['GET', 'POST'])
+def scales():
     """Scales web app"""
-
-    grades = ['4', '5']
-
-    return render_template("scalesindex.html", grades=grades)
+    grades = ['4']
+    return render_template("/scalesindex.html", grades=grades)
 
 
 @app.route("/redirecter", methods=['POST'])
@@ -53,28 +54,27 @@ def redirecter():
     session['grade'] = request.form.get('grade')
 
     if not session['instrument']:
-        return redirect('/')
+        return redirect(url_for('scales'))
     elif not session['grade']:
-        return redirect('/')
+        return redirect(url_for('scales'))
 
     session['scales'] = select_scales.get_scales(session['instrument'], session['grade'])
 
-    return redirect(url_for('scales'))
+    return redirect(url_for('practice'))
 
 
-@app.route("/", methods=['GET', 'POST'])
-def scales():
+@app.route("/practice", methods=['GET', 'POST'])
+def practice():
     """ Shows the scales to practice """
     instrument = session['instrument'].capitalize()
     grade = session['grade']
     try:
-        session['scales_tmp'] = session['scales']
-        scale = random.choice(session['scales_tmp'])
-        session['scales_tmp'].remove(scale)
-        return render_template('scales.html', scale=scale, instrument=instrument, grade=grade)
+        scales = session['scales']
+        # TODO shuffle scales list
+        scale = random.choice(session['scales'])
+        return render_template('/scales.html', scale=scale, scales=scales, instrument=instrument, grade=grade)
     except IndexError:
-        return render_template('finished.html', instrument=instrument, grade=grade)
-
+        return render_template('/finished.html', instrument=instrument, grade=grade)
 
 app.secret_key = 'test'
 app.run(debug=True)
