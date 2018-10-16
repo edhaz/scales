@@ -76,8 +76,8 @@ def practice():
     except IndexError:
         return render_template('/finished.html', instrument=instrument, grade=grade)
 
+
 app.secret_key = 'test'
-app.run(debug=True)
 
 if __name__ == "__main__":
     app.run()
