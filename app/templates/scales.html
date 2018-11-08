@@ -1,13 +1,12 @@
-{% extends "layout.html" %}
+{% extends "base.html" %}
 
-{% block title %}Scales|Practice{% endblock %}
+{% block title %}Practice{% endblock %}
 
-{% block body %}
-<script>const scales = {{ scales|tojson }};</script>
+{% block content %}
 <div class="container-fluid text-center bg-white">
+    <script>const scales = {{ scales|tojson }};</script>
     <h3><u>Grade {{ grade }} - {{ instrument }}</u></h3>
     <p>Make sure you practice each scale at least 5 times in a row without a mistake!<br>Then click 'Next Scale'.</p>
-    <br>
     <div class="container-fluid" style="max-width: 600px">
         <h3 class="js-current-scale">{{ scale }}</h3>
     </div>
@@ -20,6 +19,7 @@
 </div>
 {% endblock %}
 
-{%  block customScripts %}
-<script src="/static/scales.js"></script>
+{%  block scripts %}
+    <script src="{{ url_for('.static', filename='scales.js') }}"></script>
+    {{ super() }}
 {%  endblock %}

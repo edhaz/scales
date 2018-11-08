@@ -1,3 +1,7 @@
 .idea
 __pycache__
-venv_scales
+venv
+.DS_Store
+migrations
+logs
+app.db

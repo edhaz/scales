@@ -1,14 +1,13 @@
-console.log(scales);
-
 const currentScale = document.querySelector('.js-current-scale');
-console.dir(currentScale);
+currentScale.innerHTML = ' ';
 
 const scaleSubmit = document.querySelector('.js-scale-submit');
-console.dir(scaleSubmit);
+
+scaleSubmit.innerHTML = 'Start';
 
 scaleSubmit.addEventListener('click', function (event) {
+    scaleSubmit.innerHTML = 'Next Scale';
     event.preventDefault();
-    console.log("clicked button");
     updateScale();
 });
 
@@ -20,8 +19,6 @@ function updateScale() {
     }
     // get (random) scale
     const scale = scales.pop();
-    console.log(scale);
-    console.log(scales);
 
     // show scale
     currentScale.innerHTML = scale

@@ -1,12 +1,12 @@
-{% extends "layout.html" %}
+{% extends "base.html" %}
 
-{% block title %}Scales|Home{% endblock %}
+{% block title %}Home{% endblock %}
 
-{% block body %}
+{% block app_content %}
 <div class="container-fluid text-center bg-white">
     <div class="row justify-content-center">
         <div class="col-sm-2">
-            <img class="" src="/static/scales.png" alt="Scales logo" style="max-width: 100px">
+            <img class="" src="static/scales.png" alt="Scales logo" style="max-width: 100px">
             <h2>Scales</h2>
         </div>
         <div class="col-sm-4">
@@ -21,23 +21,13 @@
         </div>
         <div class="col-sm-2">
             <form action="/redirecter" method="post">
-                <div class="container-fluid">
-                    <h5>Select your instrument:</h5>
-                    <select name="instrument">
-                        <option disable selected value="">Select Instrument</option>
-                        <option value="violin">Violin</option>
-                    </select>
-                </div>
+                <p>Select your Instrument:</p>
+                <input type="radio" name="instrument" value="violin" checked> Violin<br>
+                <p>Select your Grade:</p>
+                {% for grade in grades %}
+                    <input type="radio" name="grade" value="{{ grade }}">   {{ grade }}
+                {% endfor %}
                 <br>
-                <div class="container-fluid">
-                <h5>Select your grade:</h5>
-                    <select name="grade">
-                        <option disable selected value="">Select Grade</option>
-                        {% for grade in grades %}
-                            <option value="{{ grade }}">Grade {{ grade }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
                 <br>
                 <div class="container-fluid">
                     <button class="btn btn-primary" type="submit">Submit</button>
