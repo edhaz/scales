@@ -22,15 +22,26 @@
         <div class="col-sm-2">
             <form action="/redirecter" method="post">
                 <p>Select your Instrument:</p>
-                <input type="radio" name="instrument" value="violin" checked> Violin<br>
+                <div class="btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-info active">
+                        <input type="radio" name="instrument" id="option1" autocomplete="off" value="violin" checked> Violin<br>
+                    </label>
+                    <label class="btn btn-info">
+                        <input type="radio" name="instrument" id="option2" autocomplete="off" value="piano"> Piano<br>
+                    </label>
+                </div>
                 <p>Select your Grade:</p>
-                {% for grade in grades %}
-                    <input type="radio" name="grade" value="{{ grade }}">   {{ grade }}
-                {% endfor %}
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    {% for grade in grades %}
+                    <label class="btn btn-info">
+                        <input type="radio" name="grade" id="option{{ grade }}" autocomplete="" value="{{ grade }}">   {{ grade }}
+                    </label>
+                    {% endfor %}
+                </div>
                 <br>
                 <br>
                 <div class="container-fluid">
-                    <button class="btn btn-primary" type="submit">Submit</button>
+                    <button class="btn btn-submit" type="submit">Submit</button>
                 </div>
             </form>
         </div>

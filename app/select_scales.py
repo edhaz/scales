@@ -1,23 +1,31 @@
+import csv
+
+
 def get_scales(instrument, grade):
-    """
-    :param instrument: string
-    :param grade: string '1'-'8'
-    :return: list of scales
-    """
-    if instrument == 'violin':
-        if grade == '4':
-            scales = ['Ab major scale, 2 octaves', 'B major scale, 2 octaves', 'C major scale, 2 octaves',
-                      'E major scale, 2 octaves', 'G minor scale, 2 octaves', 'B minor scale, 2 octaves', 'C minor scale, 2 octaves',
-                      'Ab major arpeggio, 2 octaves', 'B major arpeggio, 2 octaves', 'C major arpeggio, 2 octaves',
-                      'E major arpeggio, 2 octaves', 'G minor arpeggio, 2 octaves', 'B minor arpeggio, 2 octaves',
-                      'C minor arpeggio, 2 octaves', 'Dominant seventh in the key of C, 1 octave',
-                      'Dominant seventh in the key of D, 1 octave', 'Chromatic scale starting on A, 1 octave',
-                      'Chromatic scale starting on E, 1 octave']
-        elif grade == '5':
-            scales = ['Db major', 'Eb major', 'F major', 'B minor', 'C# minor', 'E minor']
-    elif instrument == 'piano':
-        if grade == '4':
-            scales = ['test1', 'test2', 'cowboy']
-        elif grade == '5':
-            scales = ['test1', 'test2', 'alien']
+    filename = 'app/scales.csv'
+    scales = []
+
+    rows = []
+    with open(filename, 'r') as csvfile:
+        csvreader = csv.reader(csvfile)
+        for row in csvreader:
+            rows.append(row)
+
+    for row in rows:
+        name = row[1]
+        octaves = str(row[3])
+        if row[2] == grade and row[0] == instrument:
+            if len(name.split()) > 2:
+                scale = f"{name}, {row[3]} octave"
+                scales.append(scale)
+                continue
+            elif int(octaves) > 1:
+                scale = f"{name} scale, {octaves} octaves"
+                arp = f"{name} arpeggio, {octaves} octaves"
+            else:
+                scale = f"{name} scale, {octaves} octave"
+                arp = f"{name} arpeggio, {octaves} octaves"
+            scales.append(scale)
+            scales.append(arp)
     return scales
+
