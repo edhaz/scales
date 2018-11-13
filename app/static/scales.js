@@ -14,8 +14,8 @@ scaleSubmit.addEventListener('click', function (event) {
 function updateScale() {
     if (scales.length < 1) {
         currentScale.innerHTML = "Well done!";
-        document.querySelector('.js-submit-button').innerHTML =
-            '<p><a class="btn btn-primary" href="#" id="finished">SAVE</a></p>';
+        document.getElementById('test').innerHTML =
+            '<p><a href="#" id="finished">SAVE</a></p>';
         document.querySelector('.js-info').innerHTML = "<h4>That's all the scales for today, come back tomorrow.</h4>";
         return;
     }

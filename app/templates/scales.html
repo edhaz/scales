@@ -13,19 +13,19 @@
 
 -->
 {% block content %}
-<script type="text/javascript">
-    $(function() {
-        $('a#finished').bind('click', function() {
-            $.getJSON($SCRIPT_ROOT + '/practice/done', {
-                a: $('a[name="a"]').val()
-            });
-            return false;
-        });
-    });
-</script>
+
 <div class="container-fluid text-center bg-white">
     <script>const scales = {{ scales|tojson }};</script>
-    <!--<a href=# name="a">-->
+    <script type="text/javascript">
+            $(function() {
+                $('a#finished').bind('click', function() {
+                    $.getJSON($SCRIPT_ROOT + '/practice/done', {
+                        a: $('a[name="a"]').val()
+                    });
+                    return false;
+                });
+            });
+    </script>
     <h3><u>Grade {{ grade }} - {{ instrument }}</u></h3>
     <div class="js-info">
         <p>Make sure you practice each scale at least 5 times in a row without a mistake!<br>Then click 'Next Scale'.</p>
@@ -34,7 +34,7 @@
         <h3 class="js-current-scale">{{ scale }}</h3>
     </div>
     <br>
-    <div class="js-submit-button">
+    <div class="js-submit-button" id="test">
         <form action="/practice" method="post">
             <button class="btn btn-primary js-scale-submit" type="submit">Next Scale</button>
         </form>
