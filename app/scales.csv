@@ -1,30 +1,30 @@
-Instrument,Name,Grade,Octave
-violin,Ab major,4,2
-violin,B major,4,2
-violin,C major,4,2
-violin,E major,4,2
-violin,G minor,4,2
-violin,B minor,4,2
-violin,C minor,4,2
-violin,Dominant seventh in the key of C,4,1
-violin,Dominant seventh in the key of D,4,1
-violin,Chromatic scale starting on A,4,1
-violin,Chromatic scale starting on E,4,1
-violin,Db major,5,2
-violin,Eb major,5,2
-violin,F major,5,2
-violin,B minor,5,2
-violin,C# minor,5,2
-violin,E minor,5,2
-violin,G major,5,3
-violin,A major,5,3
-violin,G minor,5,3
-violin,A minor,5,3
-violin,Dominant seventh in the key of Bb,5,1
-violin,Dominant seventh in the key of C,5,2
-violin,Dominant seventh in the key of D,5,2
-violin,Diminished seventh starting on G,5,1
-violin,Diminished seventh starting on D,5,1
-violin,Chromatic scale starting on G,5,2
-violin,Chromatic scale starting on A,5,2
-violin,Chromatic scale starting on Bb,5,2
+Instrument,Grade,Name,Octave
+violin,4,Ab major,2
+violin,4,B major,2
+violin,4,C major,2
+violin,4,E major,2
+violin,4,G minor,2
+violin,4,B minor,2
+violin,4,C minor,2
+violin,4,Dominant seventh in the key of C,1
+violin,4,Dominant seventh in the key of D,1
+violin,4,Chromatic scale starting on A,1
+violin,4,Chromatic scale starting on E,1
+violin,5,Db major,2
+violin,5,Eb major,2
+violin,5,F major,2
+violin,5,B minor,2
+violin,5,C# minor,2
+violin,5,E minor,2
+violin,5,G major,3
+violin,5,A major,3
+violin,5,G minor,3
+violin,5,A minor,3
+violin,5,Dominant seventh in the key of Bb,1
+violin,5,Dominant seventh in the key of C,2
+violin,5,Dominant seventh in the key of D,2
+violin,5,Diminished seventh starting on G,1
+violin,5,Diminished seventh starting on D,1
+violin,5,Chromatic scale starting on G,2
+violin,5,Chromatic scale starting on A,2
+violin,5,Chromatic scale starting on Bb,2

@@ -12,10 +12,10 @@ def get_scales(instrument, grade):
             rows.append(row)
 
     for row in rows:
-        name = row[1]
+        name = row[2]
         octaves = str(row[3])
-        if row[2] == grade and row[0] == instrument:
-            if len(name.split()) > 2:
+        if row[1] == grade and row[0] == instrument:
+            if octaves == 1:
                 scale = f"{name}, {row[3]} octave"
                 scales.append(scale)
                 continue
