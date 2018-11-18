@@ -20,11 +20,11 @@ def get_scales(instrument, grade):
                 scales.append(scale)
                 continue
             elif int(octaves) > 1:
-                scale = f"{name} scale, {octaves} octaves"
-                arp = f"{name} arpeggio, {octaves} octaves"
+                scale = "{} scale, {} octaves".format(name, octaves)
+                arp = "{} arpeggio, {} octaves".format(name, octaves)
             else:
-                scale = f"{name} scale, {octaves} octave"
-                arp = f"{name} arpeggio, {octaves} octaves"
+                scale = "{} scale, {} octave".format(name, octaves)
+                arp = "{} arpeggio, {} octaves".format(name, octaves)
             scales.append(scale)
             scales.append(arp)
     return scales
