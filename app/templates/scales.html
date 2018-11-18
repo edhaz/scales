@@ -20,6 +20,7 @@
             $(function() {
                 $('a#finished').bind('click', function() {
                     $.getJSON($SCRIPT_ROOT + '/practice/done', {
+                        <!-- fetch -->
                         a: $('a[name="a"]').val()
                     });
                     return false;

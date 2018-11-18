@@ -9,6 +9,7 @@ scaleSubmit.addEventListener('click', function (event) {
     scaleSubmit.innerHTML = 'Next Scale';
     event.preventDefault();
     updateScale();
+    # Add JS here.
 });
 
 function updateScale() {

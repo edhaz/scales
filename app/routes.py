@@ -121,15 +121,6 @@ def practice():
         return render_template('/finished.html', instrument=instrument, grade=grade)
 
 
-@app.route("/test/_add_numbers")
-def add_numbers():
-    a = request.args.get('a', 0, type=int)
-    b = request.args.get('b', 0, type=int)
-    print(a)
-    print(b)
-    return jsonify(result=a+b)
-
-
 @app.route("/test")
 def test():
     if not request.script_root:

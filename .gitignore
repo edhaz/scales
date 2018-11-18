@@ -5,3 +5,4 @@ venv
 migrations
 logs
 app.db
+messages.pot
