@@ -18,6 +18,7 @@ class User(UserMixin, db.Model):
     about_me = db.Column(db.String(140))
     last_instrument = db.Column(db.String(64))
     last_grade = db.Column(db.Integer)
+    completed = db.Column(db.Boolean, default=False)
 
     def __repr__(self):
         return '<User {}>'.format(self.username)

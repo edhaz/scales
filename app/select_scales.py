@@ -16,7 +16,8 @@ def get_scales(instrument, grade):
         octaves = str(row[3])
         if row[1] == grade and row[0] == instrument:
             if octaves == 1:
-                scale = "{}, {} octave".format(name, row[3])
+                scale = "{}, {} octave".format(name, octaves)
+                print(scale)
                 scales.append(scale)
                 continue
             elif int(octaves) > 1:
@@ -28,4 +29,3 @@ def get_scales(instrument, grade):
             scales.append(scale)
             scales.append(arp)
     return scales
-

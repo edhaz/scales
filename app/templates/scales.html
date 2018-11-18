@@ -9,23 +9,19 @@
 {% endblock %}
 
 {% block title %}Practice{% endblock %}
-<!--
-
--->
 {% block content %}
 
 <div class="container-fluid text-center bg-white">
     <script>const scales = {{ scales|tojson }};</script>
-    <script type="text/javascript">
-            $(function() {
-                $('a#finished').bind('click', function() {
-                    $.getJSON($SCRIPT_ROOT + '/practice/done', {
-                        <!-- fetch -->
-                        a: $('a[name="a"]').val()
-                    });
-                    return false;
+    <script class="js-test">
+        $(function() {
+            $('a#finished').bind('click', function() {
+                $.getJSON($SCRIPT_ROOT + '/practice/done', {
+                    a: $('a[name="a"]').val()
                 });
+                return false;
             });
+        });
     </script>
     <h3><u>Grade {{ grade }} - {{ instrument }}</u></h3>
     <div class="js-info">
@@ -35,20 +31,19 @@
         <h3 class="js-current-scale">{{ scale }}</h3>
     </div>
     <br>
-    <div class="js-submit-button" id="test">
+    <div class="js-submit-button">
         <form action="/practice" method="post">
             <button class="btn btn-primary js-scale-submit" type="submit">Next Scale</button>
         </form>
     </div>
     <br>
     <a href="/" title="Home"><button class="btn btn-danger" type="submit">Home</button></a>
-    <p><a href="#" id="finished">SAVE</a></p>
 </div>
 {% endblock %}
 
 {%  block scripts %}
     <script src="{{ url_for('.static', filename='scales.js') }}"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript">
         $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
     </script>

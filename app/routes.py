@@ -11,6 +11,8 @@ from app.models import User
 @app.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():
+    if current_user.completed:
+        return render_template('finished.html')
     grades = ['4', '5']
     return render_template("index.html", grades=grades)
 
@@ -104,26 +106,20 @@ def redirecter():
 def done():
     a = request.args.get('a', 'Saved', type=int)
     print(a)
-    return jsonify(result=a)
+    flash('Work saved!')
+    current_user.completed = True
+    db.session.commit()
+    return redirect('index.html')
 
 
 @app.route("/practice", methods=['GET', 'POST'])
 @login_required
 def practice():
     """ Shows the scales to practice """
+    if current_user.completed:
+        return render_template('finished.html')
     instrument = session['instrument'].capitalize()
     grade = session['grade']
-    try:
-        scales = session['scales']
-        random.shuffle(scales)
-        return render_template('/scales.html', scales=scales, instrument=instrument, grade=grade)
-    except IndexError:
-        return render_template('/finished.html', instrument=instrument, grade=grade)
-
-
-@app.route("/test")
-def test():
-    if not request.script_root:
-        request.script_root = url_for('test', _external=True)
-
-    return render_template('test.html')
+    scales = session['scales']
+    random.shuffle(scales)
+    return render_template('scales.html', scales=scales, instrument=instrument, grade=grade)
