@@ -106,10 +106,9 @@ def redirecter():
 def done():
     a = request.args.get('a', 'Saved', type=int)
     print(a)
-    flash('Work saved!')
     current_user.completed = True
     db.session.commit()
-    return redirect('index.html')
+    return redirect(url_for('index'))
 
 
 @app.route("/practice", methods=['GET', 'POST'])
@@ -123,3 +122,15 @@ def practice():
     scales = session['scales']
     random.shuffle(scales)
     return render_template('scales.html', scales=scales, instrument=instrument, grade=grade)
+
+
+@app.route("/reset_progress", methods=['GET', 'POST'])
+@login_required
+def reset_progress():
+    if current_user.completed:
+        current_user.completed = False
+        db.session.commit()
+        flash('Progress reset.')
+        return redirect(url_for('user', username=current_user.username))
+    else:
+        return redirect(url_for('index'))

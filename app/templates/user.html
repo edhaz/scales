@@ -15,6 +15,7 @@
                 {% if user == current_user %}
                 <p><a href="{{ url_for('edit_profile') }}">Edit your profile</a></p>
                 <p>Completed: {{ user.completed }}</p>
+                <p>Click here to reset your progress: <a href="{{ url_for('reset_progress') }}">here.</a></p>
                 {% endif %}
              </td>
         </tr>
