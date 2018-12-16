@@ -9,3 +9,4 @@ messages.pot
 .vscode
 __init__.pyc
 config.pyc
+config.py
