@@ -1,8 +1,9 @@
 import csv
-
+import os
+basedir = os.path.abspath(os.path.dirname(__file__))
 
 def get_scales(instrument, grade):
-    filename = '/var/www/scales.edhazledine.com/scales/app/scales.csv'
+    filename = basedir + '/scales.csv'
     scales = []
 
     rows = []

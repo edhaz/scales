@@ -6,3 +6,6 @@ migrations
 logs
 app.db
 messages.pot
+.vscode
+__init__.pyc
+config.pyc
