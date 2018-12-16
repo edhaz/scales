@@ -2,7 +2,7 @@ import csv
 
 
 def get_scales(instrument, grade):
-    filename = 'app/scales.csv'
+    filename = '/var/www/scales.edhazledine.com/scales/app/scales.csv'
     scales = []
 
     rows = []
