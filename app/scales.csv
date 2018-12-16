@@ -1,4 +1,4 @@
-Instrument,Grade,Name,Octave, Arp
+Instrument,Grade,Name,Octave,Arp
 violin,4,Ab major,2,T
 violin,4,B major,2,T
 violin,4,C major,2,T
@@ -6,10 +6,10 @@ violin,4,E major,2,T
 violin,4,G minor,2,T
 violin,4,B minor,2,T
 violin,4,C minor,2,T
-violin,4,Dominant seventh in the key of C,1
-violin,4,Dominant seventh in the key of D,1
-violin,4,Chromatic scale starting on A,1
-violin,4,Chromatic scale starting on E,1
+violin,4,Dominant seventh in the key of C,1,F
+violin,4,Dominant seventh in the key of D,1,F
+violin,4,Chromatic scale starting on A,1,F
+violin,4,Chromatic scale starting on E,1,F
 violin,5,Db major,2,T
 violin,5,Eb major,2,T
 violin,5,F major,2,T
@@ -20,14 +20,14 @@ violin,5,G major,3,T
 violin,5,A major,3,T
 violin,5,G minor,3,T
 violin,5,A minor,3,T
-violin,5,Dominant seventh in the key of Bb,1
-violin,5,Dominant seventh in the key of C,2
-violin,5,Dominant seventh in the key of D,2
-violin,5,Diminished seventh starting on G,1
-violin,5,Diminished seventh starting on D,1
-violin,5,Chromatic scale starting on G,2
-violin,5,Chromatic scale starting on A,2
-violin,5,Chromatic scale starting on Bb,2
+violin,5,Dominant seventh in the key of Bb,1,F
+violin,5,Dominant seventh in the key of C,2,F
+violin,5,Dominant seventh in the key of D,2,F
+violin,5,Diminished seventh starting on G,1,F
+violin,5,Diminished seventh starting on D,1,F
+violin,5,Chromatic scale starting on G,2,F
+violin,5,Chromatic scale starting on A,2,F
+violin,5,Chromatic scale starting on Bb,2,F
 piano,4,B major,2,T
 piano,4,Bb major,2,T
 piano,4,Eb major,2,T
@@ -37,8 +37,8 @@ piano,4,C# minor,2,T
 piano,4,G# minor,2,T
 piano,4,C minor,2,T
 piano,4,F minor,2,T
-piano,4,F major contrary-motion,2
-piano,4,Eb major contrary-motion,2
-piano,4,D minor contrary-motion,2
-piano,4,C minor contrary-motion,2
-piano,4,Chromatic scale starting on any black note,2
+piano,4,F major contrary-motion,2,F
+piano,4,Eb major contrary-motion,2,F
+piano,4,D minor contrary-motion,2,F
+piano,4,C minor contrary-motion,2,F
+piano,4,Chromatic scale starting on any black note,2,F
