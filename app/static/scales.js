@@ -19,10 +19,6 @@ function updateScale() {
         eval(document.querySelector('.js-test').innerHTML);
         const scale = scales.pop();
         currentScale.innerHTML = scale;
-    } else if (scales.length < 1) {
-        currentScale.innerHTML = "Well done!";
-        document.querySelector('.js-info').innerHTML = "<h4>That's all the scales for today, come back tomorrow.</h4>";
-        return;
     } else {
         // get (random) scale
         const scale = scales.pop();
