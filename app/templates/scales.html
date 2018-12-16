@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block title %}Practice{% endblock %}
-{% block content %}
+{% block app_content %}
 
 <div class="container-fluid text-center bg-white">
     <script>const scales = {{ scales|tojson }};</script>
@@ -19,7 +19,7 @@
                 $.getJSON($SCRIPT_ROOT + '/practice/done', {
                     a: $('a[name="a"]').val()
                 });
-                return false;
+                //return false;
             });
         });
     </script>
@@ -36,8 +36,6 @@
             <button class="btn btn-primary js-scale-submit" type="submit">Next Scale</button>
         </form>
     </div>
-    <br>
-    <a href="/" title="Home"><button class="btn btn-danger" type="submit">Home</button></a>
 </div>
 {% endblock %}
 

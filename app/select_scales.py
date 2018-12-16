@@ -39,7 +39,3 @@ def get_scales(instrument, grade):
 
     return scales
 
-if __name__ == "__main__":
-    x = get_scales('violin', '4')
-    for i in x:
-        print(i)

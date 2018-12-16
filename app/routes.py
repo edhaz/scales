@@ -102,13 +102,13 @@ def redirecter():
     return redirect(url_for('practice'))
 
 
-@app.route("/practice/done")
+@app.route("/practice/done", methods=['GET', 'POST'])
 def done():
     a = request.args.get('a', 'Saved', type=int)
     print(a)
     current_user.completed = True
     db.session.commit()
-    return redirect(url_for('index'))
+    return "Saved!"
 
 
 @app.route("/practice", methods=['GET', 'POST'])

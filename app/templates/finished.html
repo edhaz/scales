@@ -2,9 +2,9 @@
 
 {% block title %}Practice{% endblock %}
 
-{% block content %}
+{% block app_content %}
 <div class="container-fluid text-center bg-white">
-    <h1>You're all done for today, come back tomorrow to practice again!</h1>
-    <p>You can check your profile <a href="{{ url_for('user', username=current_user.username) }}">here.</a></p>
+    <h1>Well done, that's all the scales for today, come back tomorrow to practice again!</h1>
+    <h4><a href="{{ url_for('user', username=current_user.username) }}">You can check your profile here.</a></h4>
 </div>
 {% endblock %}
