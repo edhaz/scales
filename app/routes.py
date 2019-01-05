@@ -7,7 +7,6 @@ from app.forms import LoginForm, RegistrationForm, EditProfileForm
 from app.models import User
 
 
-@app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():
@@ -15,6 +14,14 @@ def index():
         return render_template('finished.html')
     grades = ['4', '5']
     return render_template("index.html", grades=grades)
+
+
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/about', methods=['GET', 'POST'])
+def about():
+    if current_user.is_authenticated:
+        return redirect('index')
+    return render_template("about.html")
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -38,7 +45,8 @@ def login():
 @app.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('index'))
+    flash("Successfully logged out.")
+    return redirect(url_for('about'))
 
 
 @app.route('/register', methods=['GET', 'POST'])
