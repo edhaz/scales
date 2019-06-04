@@ -10,3 +10,4 @@ messages.pot
 __init__.pyc
 config.pyc
 config.py
+.env

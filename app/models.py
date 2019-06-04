@@ -49,8 +49,21 @@ class User(UserMixin, db.Model):
         return User.query.get(id)
 
 
-class Scales(db.Model):
+class Grade(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    number = db.Column(db.Integer, unique=True)
+    scales = db.relationship('Scale', backref='grades', lazy='dynamic')
+
+    def __repr__(self):
+        return '<Grade {}>'.format(self.number)
+
+
+class Scale(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), index=True)
-    grades = db.Column(db.Integer, index=True)
+    grades_id = db.Column(db.Integer, db.ForeignKey('grade.id'))
+
+    def __repr__(self):
+        return '<Scale {}>'.format(self.name)
+
 
