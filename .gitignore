@@ -7,6 +7,8 @@ logs
 app.db
 messages.pot
 .vscode
+.venv
 __init__.pyc
 config.pyc
 config.py
+*.egg*
