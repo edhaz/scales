@@ -17,4 +17,3 @@ for u in query:
 
 db.session.commit()
 print("Session committed")
-

@@ -1,0 +1,25 @@
+<nav class="bg-blue-800 shadow-md text-white">
+    <ul class="flex justify-between text-md mx-auto max-w-screen-lg">
+        <div>
+            <li class="m-2">
+                <a class="navbar-brand custom-font-scales font-bold text-2xl" href="{{ url_for('about') }}">Scales</a>
+            </li>
+        </div>
+        <div class="flex">
+            {% if not current_user.is_anonymous %}
+            <li class="m-auto mr-3 align-middle">
+                <a class="text-gray-300 hover:text-gray-100"
+                    href="{{ url_for('profile', user=current_user.username) }}">Profile</a>
+            </li>
+            {% endif %}
+            <li class="m-auto mr-3 align-middle">
+                {% if current_user.is_anonymous and request.endpoint != 'login' %}
+                <a class="text-gray-300 hover:text-gray-100" href="{{ url_for('login') }}">Login</a>
+                {% endif %}
+                {% if not current_user.is_anonymous %}
+                <a class="text-gray-300 hover:text-gray-100" href="{{ url_for('logout') }}">Logout</a>
+                {% endif %}
+            </li>
+        </div>
+    </ul>
+</nav>

@@ -2,9 +2,12 @@
 
 {% block title %}Practice{% endblock %}
 
-{% block app_content %}
-<div class="container-fluid text-center bg-white">
-    <h1>Well done, that's all the scales for today, come back tomorrow to practice again!</h1>
-    <h4><a href="{{ url_for('user', username=current_user.username) }}">You can check your profile here.</a></h4>
+{% block content %}
+<div class="max-w-lg mx-auto my-10 py-2 bg-blue-100 text-center rounded-xl">
+    <h1 class="text-xl">You're done for today! 🎉</h1>
+    <h3 class="text-lg">Come back tomorrow to keep your streak up.</h3>
+    <a class="hover:text-blue-800" href="{{ url_for('profile', user=current_user.username) }}">
+        You can check your profile here.
+    </a>
 </div>
 {% endblock %}

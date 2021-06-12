@@ -12,3 +12,5 @@ __init__.pyc
 config.pyc
 config.py
 *.egg*
+scales/data/scales.db
+node_modules

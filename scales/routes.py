@@ -1,10 +1,16 @@
 import random
-from flask import redirect, render_template, request, session, url_for, flash, jsonify
+import json
+from flask import redirect, render_template, request, session, url_for, flash
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
-from app import select_scales, app, db
-from app.forms import LoginForm, RegistrationForm, EditProfileForm
-from app.models import User
+from scales import select_scales, app, db
+from scales.forms import LoginForm, RegistrationForm
+from scales.models import User
+
+
+@app.before_first_request
+def setup():
+    db.create_all()
 
 
 @app.route('/index', methods=['GET', 'POST'])
@@ -64,27 +70,12 @@ def register():
     return render_template('register.html', title='Register', form=form)
 
 
-@app.route('/user/<username>')
+@app.route('/profile')
 @login_required
-def user(username):
+def profile():
+    username = request.args.get('user')
     user = User.query.filter_by(username=username).first_or_404()
-    return render_template('user.html', user=user)
-
-
-@app.route('/edit_profile', methods=['GET', 'POST'])
-@login_required
-def edit_profile():
-    form = EditProfileForm(current_user.username)
-    if form.validate_on_submit():
-        current_user.username = form.username.data
-        current_user.about_me = form.about_me.data
-        db.session.commit()
-        flash('Your changes have been saved.')
-        return redirect(url_for('user', username=current_user.username))
-    elif request.method == 'GET':
-        form.username.data = current_user.username
-        form.about_me.data = current_user.about_me
-    return render_template('edit_profile.html', title='Edit Profile', form=form)
+    return render_template('profile.html', user=user)
 
 
 @app.route("/redirecter", methods=['POST'])
@@ -105,18 +96,17 @@ def redirecter():
         flash('You need to select a grade.')
         return redirect(url_for('index'))
 
-    session['scales'] = select_scales.get_scales(session['instrument'], session['grade'])
+    session['scales'] = [json.dumps(scale.__dict__) for scale in select_scales.get_scales(
+        session['instrument'], session['grade'])]
 
     return redirect(url_for('practice'))
 
 
-@app.route("/practice/done", methods=['GET', 'POST'])
+@app.route("/practice/save", methods=['GET', 'POST'])
 def done():
-    a = request.args.get('a', 'Saved', type=int)
-    print(a)
     current_user.completed = True
     db.session.commit()
-    return "Saved!"
+    return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
 
 
 @app.route("/practice", methods=['GET', 'POST'])
@@ -138,7 +128,7 @@ def reset_progress():
     if current_user.completed:
         current_user.completed = False
         db.session.commit()
-        flash('Progress reset.')
-        return redirect(url_for('user', username=current_user.username))
+        flash('Progress reset')
+        return redirect(url_for('profile', user=current_user.username))
     else:
         return redirect(url_for('index'))

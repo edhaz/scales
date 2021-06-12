@@ -1,7 +1,8 @@
-from app import db, login, app
+from scales import db, login, app
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from hashlib import md5
+from datetime import time
 import jwt
 
 
@@ -21,7 +22,7 @@ class User(UserMixin, db.Model):
     completed = db.Column(db.Boolean, default=False)
 
     def __repr__(self):
-        return '<User {}>'.format(self.username)
+        return f'<User {self.username}>'
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -31,8 +32,7 @@ class User(UserMixin, db.Model):
 
     def avatar(self, size):
         digest = md5(self.email.lower().encode('utf-8')).hexdigest()
-        return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(
-            digest, size)
+        return f'https://www.gravatar.com/avatar/{digest}?d=identicon&s={size}'
 
     def get_reset_password_token(self, expires_in=600):
         return jwt.encode(
@@ -44,7 +44,7 @@ class User(UserMixin, db.Model):
         try:
             id = jwt.decode(token, app.config['SECRET_KEY'],
                             algorithms=['HS256'])['reset_password']
-        except:
+        except Exception:
             return
         return User.query.get(id)
 
@@ -53,4 +53,3 @@ class Scales(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), index=True)
     grades = db.Column(db.Integer, index=True)
-

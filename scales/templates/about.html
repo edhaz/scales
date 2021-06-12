@@ -2,23 +2,21 @@
 
 {% block title %}About{% endblock %}
 
-{% block app_content %}
-<div class="container-fluid text-center">
-    <div class="">
-        <img class="" src="./static/scales.png" alt="Scales logo" style="max-width: 100px">
-        <h2>Scales</h2>
-        <div class="container-fluid" style="max-width: 350px">
-            <p>An app to help you when practicing scales.</p>
-        </div>
-        <div class="container-fluid">
-            <p>Already have an account?</p>
-            <a href="{{ url_for('login') }}"><button type="button" class="btn btn-primary">Login</button></a>
-        </div>
-        <br>
-        <div class="container-fluid">
-            <p>New here?</p>
-            <a href="{{ url_for('register') }}"><button  type="button" class="btn btn-primary">Register</button></a>
-        </div>
+{% block content %}
+<div class="text-center text-gray-800 m-10">
+    <img class="w-24 mx-auto object-center" src="./static/scales.png" alt="Scales logo">
+    <h2 class="text-5xl font-bold custom-font-scales pt-2">Scales</h2>
+    <h3 class="text-xl font-bold custom-font-scales">(and arpeggios)</h3>
+    <p class="text-xl pt-2">Built to help you practice scales on your instrument*!</p>
+
+    <div class="mt-6">
+        <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            href="{{ url_for('login') }}">Login</a>
+        <p class="m-2">or</p>
+        <a class="m-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            href="{{ url_for('register') }}">Register</a>
     </div>
+
+    <p class="mt-8 text-sm italic text-gray-500">*Currently available for Violin and Piano</p>
 </div>
 {% endblock %}

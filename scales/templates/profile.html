@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="flex max-w-lg mx-auto my-10 bg-blue-100 p-3 rounded-xl shadow-md">
+    <div class="my-auto">
+        <img class="object-contain mx-6 mt-3" src="{{ user.avatar(100) }}">
+        <h1 class="font-bold text-xl text-center pt-2">{{ user.username }}</h1>
+    </div>
+    <div class="flex flex-col justify-between">
+        <div>
+            {% if user.last_seen %}<p>Last seen on: {{ moment(user.last_seen).format('LLL') }}</p>{% endif %}
+            {% if user.last_instrument %}
+            <p><strong>Current instrument:</strong> {% filter capitalize %}{{ user.last_instrument }}{% endfilter
+                %}</p>
+            <p><strong>Current grade:</strong> {{ user.last_grade }}</p>
+            {% endif %}
+        </div>
+        {% if user == current_user %}
+        {% if user.completed %}
+        <p class="mt-4"><a
+                class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                href="{{ url_for('reset_progress') }}">Reset your daily progress</a></p>
+        {% endif %}
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}

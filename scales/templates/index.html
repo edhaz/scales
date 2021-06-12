@@ -2,49 +2,44 @@
 
 {% block title %}Home{% endblock %}
 
-{% block app_content %}
-<div class="container-fluid text-center bg-white">
-    <div class="row justify-content-center">
-        <div class="col-sm-2">
-            <img class="" src="./static/scales.png" alt="Scales logo" style="max-width: 100px">
-            <h2>Scales</h2>
-        </div>
-        <div class="col-sm-4">
-            <div class="container-fluid" style="max-width: 350px">
-                <p>An app to help you when practicing scales.</p>
-                <ul class="list-group">
-                    <li class="list-group-item">Select your Instrument and the Grade you are working on.</li>
-                    <li class="list-group-item">You will be shown a random list of the scales required one at a time.</li>
-                    <li class="list-group-item">Then all you do is hit 'Next Scale' once you have practiced the one being shown.</li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-sm-2">
-            <form action="/redirecter" method="post">
-                <p>Select your Instrument:</p>
-                <div class="btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-info active">
-                        <input type="radio" name="instrument" id="option1" autocomplete="off" value="violin" checked> Violin<br>
-                    </label>
-                    <label class="btn btn-info">
-                        <input type="radio" name="instrument" id="option2" autocomplete="off" value="piano"> Piano<br>
-                    </label>
-                </div>
-                <p>Select your Grade:</p>
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+{% block content %}
+<div class="container flex flex-col justify-between w-screen max-w-screen-lg my-10 px-10 mx-auto sm:flex-row">
+    <div class="flex-initial m-auto">
+        <img class="w-32" src="./static/scales.png" alt="Scales logo">
+    </div>
+    <div class="text-center my-4">
+        <ul class="bg-blue-100 mx-10 py-2 rounded-xl shadow-md">
+            <li class="px-6 py-2">Select the instrument and grade you are working on and press 'Start'.</li>
+            <li class="px-6 py-2 bg-blue-200">You'll be shown a random list of the scales required one at a time.
+            </li>
+            <li class="px-6 py-2">Practice your scale <br> (we recommend 5 times correctly in a row)!</li>
+            <li class="px-6 py-2 bg-blue-200">Once you're done press 'Next Scale'.</li>
+            <li class="px-6 py-2">Repeat until you've completed them all for today.</li>
+        </ul>
+    </div>
+    <div class="flex-initial m-auto bg-blue-100 rounded-xl shadow-md">
+        <form action="/redirecter" method="post" class="p-4">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+            <div class="flex flex-col text-center">
+                <p class="text-lg px-4 font-bold">1. Select your instrument:</p>
+                <select name="instrument" class="bg-gray-100 rounded p-2 my-2 shadow">
+                    <option value="violin">Violin</option>
+                    <option value="piano">Piano</option>
+                </select>
+                <p class="text-lg p-4 font-bold">2. Select your grade:</p>
+                <div class="" data-toggle="buttons">
                     {% for grade in grades %}
-                    <label class="btn btn-info">
-                        <input type="radio" name="grade" id="option{{ grade }}" autocomplete="" value="{{ grade }}">   {{ grade }}
+                    <label class="p-2 text-lg checked:text-blue-500">
+                        <input type="radio" name="grade" id="option{{ grade }}" autocomplete="" value="{{ grade }}">
+                        {{ grade }}
                     </label>
                     {% endfor %}
                 </div>
-                <br>
-                <br>
-                <div class="container-fluid">
-                    <button class="btn btn-submit" type="submit">Submit</button>
-                </div>
-            </form>
-        </div>
+                <button
+                    class="mt-4 mx-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    type="submit">3. Start!</button>
+            </div>
+        </form>
     </div>
 </div>
 {% endblock %}

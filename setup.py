@@ -6,5 +6,6 @@ setup(name='scales',
       author='Ed Hazledine',
       author_email='ed.hazledine@gmail.com',
       packages=['scales'],
-      install_requires=[''],
+      install_requires=['flask', 'flask_sqlalchemy',
+                        'flask_login', 'flask_wtf', 'pyjwt', 'email_validator'],
       )
