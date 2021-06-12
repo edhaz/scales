@@ -25,6 +25,5 @@ jobs:
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.SSH_KEY }}
-          rm: true
-          source: "output/*"
+          source: "scales/*, setup.*"
           target: "${{ secrets.REMOTE_DIR }}"
