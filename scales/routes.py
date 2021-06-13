@@ -13,24 +13,17 @@ def setup():
     db.create_all()
 
 
-@app.route('/index', methods=['GET', 'POST'])
-@login_required
-def index():
-    if current_user.completed:
-        return render_template('finished.html')
-    grades = ['4', '5']
-    return render_template("index.html", grades=grades)
-
-
 @app.route('/', methods=['GET', 'POST'])
-@app.route('/about', methods=['GET', 'POST'])
-def about():
+def index():
     if current_user.is_authenticated:
-        return redirect('index')
+        if current_user.completed:
+            return render_template('finished.html')
+        grades = ['4', '5']
+        return render_template("index.html", grades=grades)
     return render_template("about.html")
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/sign_in', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
@@ -48,11 +41,11 @@ def login():
     return render_template('login.html', title='Sign In', form=form)
 
 
-@app.route('/logout')
+@app.route('/sign_out')
 def logout():
     logout_user()
     flash("Successfully logged out.")
-    return redirect(url_for('about'))
+    return redirect(url_for('index'))
 
 
 @app.route('/register', methods=['GET', 'POST'])

@@ -23,9 +23,7 @@
 
 
 <body>
-    {% if request.endpoint != "about" %}
     {% include "navbar.html" %}
-    {% endif %}
 
     {% with messages = get_flashed_messages() %}
     {% if messages %}
