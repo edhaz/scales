@@ -1,30 +1,32 @@
 from flask_wtf import FlaskForm
-from scales.models import User
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
-from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
+from wtforms import BooleanField, PasswordField, StringField, SubmitField
+from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
+
+from . import store
 
 
 class LoginForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    remember_me = BooleanField('Remember Me')
-    submit = SubmitField('Sign In')
+    username = StringField("Username", validators=[DataRequired()])
+    password = PasswordField("Password", validators=[DataRequired()])
+    remember_me = BooleanField("Remember Me")
+    submit = SubmitField("Sign In")
 
 
 class RegistrationForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    password = PasswordField('Password', validators=[DataRequired(), EqualTo('password')])
-    password2 = PasswordField(
-        'Repeat Password', validators=[DataRequired(), EqualTo('password')])
-    submit = SubmitField('Regsiter')
+    username = StringField("Username", validators=[DataRequired()])
+    email = StringField("Email", validators=[DataRequired(), Email()])
+    password = PasswordField("Password", validators=[DataRequired(), EqualTo("password")])
+    password2 = PasswordField("Repeat Password", validators=[DataRequired(), EqualTo("password")])
+    submit = SubmitField("Regsiter")
+
+    def validate_password(self, password):
+        if len(password.data) < 8:
+            raise ValidationError("Password must be 8 or more characters")
 
     def validate_username(self, username):
-        user_name = User.query.filter_by(username=username.data).first()
-        if user_name is not None:
-            raise ValidationError('Please use a different username.')
+        if store.get_user_by_name(username.name) is not None:
+            raise ValidationError("Username already taken")
 
     def validate_email(self, email):
-        user_email = User.query.filter_by(email=email.data).first()
-        if user_email is not None:
-            raise ValidationError('Please use a different email address.')
+        if store.get_user_by_email(email.data) is not None:
+            raise ValidationError("Email address already in use")

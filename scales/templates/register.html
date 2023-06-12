@@ -11,7 +11,7 @@
                 {{ form.username(size=32, class_="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700
                 leading-tight focus:outline-none focus:shadow-outline", placeholder="Username") }}
                 {% for error in form.username.errors %}
-                <p class="mt-3 text-red-500 text-xs italic">[{{ error }}]</p>
+                <p class="mt-3 text-red-500 text-xs italic">{{ error }}</p>
                 {% endfor %}
             </div>
             <div class="mb-4">
@@ -19,7 +19,7 @@
                 {{ form.email(size=32, class_="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700
                 leading-tight focus:outline-none focus:shadow-outline", placeholder="Email") }}
                 {% for error in form.email.errors %}
-                <p class="mt-3 text-red-500 text-xs italic">[{{ error }}]</p>
+                <p class="mt-3 text-red-500 text-xs italic">{{ error }}</p>
                 {% endfor %}
             </div>
             <div class="mb-6">

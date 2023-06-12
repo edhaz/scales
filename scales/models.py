@@ -1,14 +1,11 @@
-from scales import db, login, app
-from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import UserMixin
-from hashlib import md5
 from datetime import time
+from hashlib import md5
+
 import jwt
+from flask_login import UserMixin
+from werkzeug.security import check_password_hash, generate_password_hash
 
-
-@login.user_loader
-def load_user(id):
-    return User.query.get(int(id))
+from . import app, db, login
 
 
 class User(UserMixin, db.Model):
@@ -22,7 +19,7 @@ class User(UserMixin, db.Model):
     completed = db.Column(db.Boolean, default=False)
 
     def __repr__(self):
-        return f'<User {self.username}>'
+        return f"<User {self.username}>"
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -31,22 +28,28 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.password_hash, password)
 
     def avatar(self, size):
-        digest = md5(self.email.lower().encode('utf-8')).hexdigest()
-        return f'https://www.gravatar.com/avatar/{digest}?d=identicon&s={size}'
+        digest = md5(self.email.lower().encode("utf-8")).hexdigest()
+        return f"https://www.gravatar.com/avatar/{digest}?d=identicon&s={size}"
 
     def get_reset_password_token(self, expires_in=600):
         return jwt.encode(
-            {'reset_password': self.id, 'exp': time() + expires_in},
-            app.config['SECRET_KEY'], algorithm='HS256').decode('utf-8')
+            {"reset_password": self.id, "exp": time() + expires_in},
+            app.config["SECRET_KEY"],
+            algorithm="HS256",
+        ).decode("utf-8")
 
     @staticmethod
     def verify_reset_password_token(token):
         try:
-            id = jwt.decode(token, app.config['SECRET_KEY'],
-                            algorithms=['HS256'])['reset_password']
+            id = jwt.decode(token, app.config["SECRET_KEY"], algorithms=["HS256"])["reset_password"]
         except Exception:
             return
         return User.query.get(id)
+
+
+@login.user_loader
+def load_user(id: int):
+    return db.session.query(User).filter(User.id == id).one()
 
 
 class Scales(db.Model):
